@@ -1,0 +1,47 @@
+{
+  "resources": [
+    {
+      "title": "Personal Bests",
+      "description": "Track all my gaming achievements and speedrun records",
+      "url": "https://zodidev.github.io/PBs/",
+      "category": "Gaming",
+      "thumbnail": "pbs-thumbnail.jpg",
+      "gradient": {
+        "direction": "to right",
+        "colors": ["#0077be", "#000000"]
+      }
+    },
+    {
+      "title": "Stream Commands",
+      "description": "Complete list of chat commands and their usage",
+      "url": "https://zodidev.github.io/ZodCommands/",
+      "category": "Stream Tools",
+      "thumbnail": "commands-thumbnail.jpg",
+      "gradient": {
+        "direction": "to right",
+        "colors": ["#50C878", "#000000"]
+      }
+    },
+    {
+      "title": "Stream Bingo",
+      "description": "Interactive bingo game for stream events",
+      "url": "https://zodidev.github.io/Bingo/",
+      "category": "Interactive",
+      "thumbnail": "bingo-thumbnail.jpg",
+      "gradient": {
+        "direction": "to right",
+        "colors": ["#e96443", "#904e95"]
+      }
+    }
+  ],
+  "socials": {
+    "twitch": "https://twitch.tv/ZodiSP",
+    "twitter": "https://twitter.com/StreamZodi",
+    "discord": "https://discord.com/invite/CUbVbzkc34/",
+    "Merch": "https://ZodiMerch.com"
+  },
+  "metadata": {
+    "lastUpdated": "2024-11-23",
+    "version": "1.0"
+  }
+}

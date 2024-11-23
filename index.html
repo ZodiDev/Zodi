@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="LogoRawPng.png" type="image/png" />
+    <title>Resources</title>
+    <style>
+      /* Previous styles remain the same until resource-card */
+      :root {
+        --netflix-red: #e50914;
+        --netflix-black: #141414;
+        --netflix-dark-gray: #232323;
+        --gradient-start: #1a1a2e;
+        --gradient-middle: #16213e;
+        --gradient-end: #1a1a2e;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-middle) 50%,
+          var(--gradient-end) 100%
+        );
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .navbar {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 10%,
+          transparent
+        );
+        padding: 1rem 4%;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(5px);
+      }
+
+      .logo {
+        color: var(--netflix-red);
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-links a {
+        color: #fff;
+        text-decoration: none;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .social-links a:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        margin-top: 2rem;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content p {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        opacity: 0.8;
+      }
+
+      .resources-row {
+        padding: 0 4%;
+        margin-top: -2rem;
+        flex-grow: 1;
+      }
+
+      .resources-row h2 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .resources-slider {
+        display: flex;
+        gap: 2rem;
+        padding: 1rem 0;
+        scrollbar-width: none;
+        /* Add padding to prevent card shadows from being cut off */
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+
+      .resource-card {
+        min-width: 400px;
+        height: 225px;
+        position: relative;
+        cursor: pointer;
+        /* Remove border-radius from main card */
+        transform-origin: center center;
+        transition: all 0.4s ease;
+      }
+
+      .resource-card:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      /* New wrapper div to handle the border radius and overflow */
+      .card-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      .resource-card:hover .card-wrapper {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .resource-card-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* Remove border radius from background */
+        background-size: cover;
+        background-position: center;
+      }
+
+      .resource-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+        z-index: 1;
+        /* Remove border radius from info section */
+      }
+
+      @keyframes cardFloat {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .resource-card {
+        animation: cardFloat 4s ease-in-out infinite;
+      }
+
+      /* Ensure content stays within border-radius */
+      .resource-content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Previous navbar and hero section remain the same -->
+    <nav class="navbar">
+      <a href="#" class="logo">Zodi</a>
+      <div class="social-links" id="socialLinks"></div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Zodi's Resources</h1>
+        <p>All your favorite stream tools in one place</p>
+      </div>
+    </header>
+
+    <section class="resources-row">
+      <h2>Featured Resources</h2>
+      <div class="resources-slider" id="featuredResources"></div>
+    </section>
+
+    <footer>
+      <p>© 2024 Zodi. All rights reserved.</p>
+    </footer>
+
+    <script>
+      fetch("resources.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const resourcesContainer =
+            document.getElementById("featuredResources");
+          data.resources.forEach((resource) => {
+            const card = document.createElement("div");
+            card.className = "resource-card";
+            card.onclick = () => (window.location.href = resource.url);
+
+            const gradient = `linear-gradient(${
+              resource.gradient.direction
+            }, ${resource.gradient.colors.join(", ")})`;
+
+            card.innerHTML = `
+                        <div class="card-wrapper">
+                            <div class="resource-card-background" style="background: ${gradient}"></div>
+                            <div class="resource-content">
+                                <div class="resource-info">
+                                    <h3>${resource.title}</h3>
+                                    <p>${resource.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+            resourcesContainer.appendChild(card);
+          });
+
+          // Social links rendering remains the same
+          const socialLinksContainer = document.getElementById("socialLinks");
+          Object.entries(data.socials).forEach(([platform, url]) => {
+            const link = document.createElement("a");
+            link.href = url;
+            link.textContent =
+              platform.charAt(0).toUpperCase() + platform.slice(1);
+            link.title = platform.charAt(0).toUpperCase() + platform.slice(1);
+            link.target = "_blank";
+            socialLinksContainer.appendChild(link);
+          });
+        });
+    </script>
+  </body>
+</html>
