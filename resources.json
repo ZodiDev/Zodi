@@ -52,8 +52,11 @@
           "description": "Watch my latest videos",
           "url": "https://youtube.com/@zodi02",
           "background": {
-            "type": "image",
-            "url": "/path/to/youtube-banner.jpg"
+            "type": "gradient",
+            "gradient": {
+              "direction": "to right",
+              "colors": ["#FF0000", "#282828"]
+            }
           }
         },
         {
@@ -61,8 +64,11 @@
           "description": "Watch me live!",
           "url": "https://twitch.tv/ZodiSP",
           "background": {
-            "type": "image",
-            "url": "/path/to/twitch-banner.jpg"
+            "type": "gradient",
+            "gradient": {
+              "direction": "to right",
+              "colors": ["#9146FF", "#282828"]
+            }
           }
         },
         {
@@ -70,8 +76,11 @@
           "description": "Follow for updates",
           "url": "https://twitter.com/StreamZodi",
           "background": {
-            "type": "image",
-            "url": "/path/to/twitter-banner.jpg"
+            "type": "gradient",
+            "gradient": {
+              "direction": "to right",
+              "colors": ["#1DA1F2", "#14171A"]
+            }
           }
         },
         {
@@ -79,8 +88,11 @@
           "description": "Join the community",
           "url": "https://discord.com/invite/CUbVbzkc34/",
           "background": {
-            "type": "image",
-            "url": "/path/to/discord-banner.jpg"
+            "type": "gradient",
+            "gradient": {
+              "direction": "to right",
+              "colors": ["#7289DA", "#23272A"]
+            }
           }
         }
       ]
