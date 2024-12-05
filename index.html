@@ -191,7 +191,14 @@
 
       async function loadResources() {
         try {
-          const response = await fetch("/resources.json");
+          // Get the current path to handle both local and GitHub Pages
+          const basePath = window.location.pathname;
+          // If we're on GitHub Pages, we need to include the repository name
+          const jsonPath = basePath.endsWith("/")
+            ? "resources.json"
+            : basePath + "/resources.json";
+
+          const response = await fetch(jsonPath);
           const data = await response.json();
           renderPage(data);
         } catch (error) {
