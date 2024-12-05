@@ -3,285 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zodi's Resources</title>
+    <title>Stream Hub</title>
     <style>
-      :root {
-        --netflix-red: #e50914;
-        --netflix-black: #141414;
-        --netflix-dark-gray: #232323;
-        --gradient-start: #1a1a2e;
-        --gradient-middle: #16213e;
-        --gradient-end: #1a1a2e;
-      }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Arial", sans-serif;
+        font-family: "Inter", sans-serif;
       }
 
       body {
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start) 0%,
-          var(--gradient-middle) 50%,
-          var(--gradient-end) 100%
-        );
-        color: white;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        background: #0f0f0f;
+        color: white;
+        overflow-x: hidden;
       }
 
-      .navbar {
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.7) 10%,
-          transparent
-        );
-        padding: 1rem 4%;
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(5px);
+      .container {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 1rem;
       }
 
-      .logo {
-        color: var(--netflix-red);
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-decoration: none;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .hero {
-        height: 25vh;
-        display: flex;
-        align-items: center;
-        padding: 0 4%;
-        margin-top: 2rem;
-      }
-
-      .hero-content h1 {
+      h1 {
+        text-align: center;
         font-size: 3.5rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+        /* Add a default color state */
+        color: white;
+        /* Then layer the gradient effect on top */
+        background: linear-gradient(
+          to right,
+          var(--primary, #ff4d4d),
+          var(--secondary, #ff9966),
+          var(--tertiary, #ffcc66)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Only make it transparent when the gradient is loaded */
+        color: transparent;
+        animation: titleGlow 3s infinite;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
       }
 
-      .hero-content p {
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+
+      .category {
+        margin-bottom: 2rem;
+      }
+
+      .category-title {
         font-size: 1.8rem;
         margin-bottom: 1rem;
-        opacity: 0.8;
-      }
-
-      .sections-container {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        padding: 0 4%;
-        margin-top: -2rem;
-        flex-grow: 1;
-      }
-
-      .section-row {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .section-row h2 {
-        font-size: 2rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .resources-slider {
-        display: flex;
-        gap: 2rem;
-        padding: 1rem 0;
-        scrollbar-width: none;
-        padding-bottom: 20px;
-        padding-top: 20px;
-        overflow-x: auto;
-      }
-
-      .resources-slider::-webkit-scrollbar {
-        display: none;
-      }
-
-      .resource-card {
-        min-width: 400px;
-        height: 225px;
+        padding-left: 1rem;
         position: relative;
+      }
+
+      .category-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 4px;
+        height: 100%;
+        transform: translateY(-50%);
+        background: var(--primary);
+      }
+
+      .card {
+        position: relative;
+        padding: 1.5rem;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
         cursor: pointer;
-        transform-origin: center center;
-        transition: all 0.4s ease;
-      }
-
-      .resource-card:hover {
-        transform: scale(1.05) translateY(-10px);
-      }
-
-      .card-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        border: 2px solid transparent;
+        background: var(--bg-gradient);
+        border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1;
+        box-shadow: 0 0 15px var(--primary-glow);
       }
 
-      .resource-card:hover .card-wrapper {
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-      }
-
-      .resource-card-background {
+      .card::before {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background-size: cover;
-        background-position: center;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
       }
 
-      .resource-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 2rem;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
-        z-index: 1;
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px var(--primary-glow);
       }
 
-      .resource-info h3 {
-        margin-bottom: 0.8rem;
-        font-size: 1.5rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      .card:hover::before {
+        opacity: 1;
       }
 
-      .resource-info p {
-        font-size: 1.1rem;
-        opacity: 0.9;
+      .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .card-description {
+        color: #cccccc;
+        font-size: 0.9rem;
         line-height: 1.4;
       }
 
-      footer {
-        padding: 2rem 4%;
-        text-align: center;
-        opacity: 0.7;
-        margin-top: auto;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-      }
-
-      @keyframes cardFloat {
-        0% {
-          transform: translateY(0);
+      @keyframes titleGlow {
+        0%,
+        100% {
+          text-shadow: 0 0 20px var(--primary-glow, rgba(255, 77, 77, 0.3));
+          filter: brightness(1);
         }
         50% {
-          transform: translateY(-5px);
-        }
-        100% {
-          transform: translateY(0);
+          text-shadow: 0 0 40px var(--secondary-glow, rgba(255, 153, 102, 0.3));
+          filter: brightness(1.2);
         }
       }
 
-      .resource-card {
-        animation: cardFloat 4s ease-in-out infinite;
-      }
-
-      .resource-content {
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 2.5rem;
+        }
       }
     </style>
   </head>
   <body>
-    <nav class="navbar">
-      <a href="#" class="logo">Zodi</a>
-    </nav>
-
-    <header class="hero">
-      <div class="hero-content">
-        <h1>Zodi's Resources</h1>
-        <p>All your favorite stream tools in one place</p>
-      </div>
-    </header>
-
-    <div class="sections-container" id="sectionsContainer">
-      <!-- Sections will be dynamically inserted here -->
+    <div class="container">
+      <h1 id="pageTitle">Loading...</h1>
+      <div id="categories"></div>
     </div>
 
-    <footer>
-      <p>© 2024 Zodi. All rights reserved.</p>
-    </footer>
-
     <script>
-      function createResourceCard(resource) {
-        const card = document.createElement("div");
-        card.className = "resource-card";
-        card.onclick = () => (window.location.href = resource.url);
+      // Color utility functions
+      function generateColorVariants(baseColor) {
+        // Convert color name to HSL values
+        const colors = {
+          red: [0, 80, 60],
+          pink: [330, 80, 60],
+          blue: [210, 80, 60],
+          green: [120, 80, 60],
+          purple: [270, 80, 60],
+          orange: [30, 80, 60],
+          // Add more base colors as needed
+        };
 
-        let backgroundStyle = "";
-        if (resource.background.type === "gradient") {
-          const gradient = `linear-gradient(${
-            resource.background.gradient.direction
-          }, ${resource.background.gradient.colors.join(", ")})`;
-          backgroundStyle = `background: ${gradient}`;
-        } else if (resource.background.type === "image") {
-          backgroundStyle = `background-image: url('${resource.background.url}'); background-size: cover; background-position: center;`;
-        }
+        const [h, s, l] = colors[baseColor] || colors.blue;
 
-        card.innerHTML = `
-                <div class="card-wrapper">
-                    <div class="resource-card-background" style="${backgroundStyle}"></div>
-                    <div class="resource-content">
-                        <div class="resource-info">
-                            <h3>${resource.title}</h3>
-                            <p>${resource.description}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-        return card;
+        return {
+          primary: `hsl(${h}, ${s}%, ${l}%)`,
+          secondary: `hsl(${h + 15}, ${s}%, ${l}%)`,
+          tertiary: `hsl(${h + 30}, ${s}%, ${l}%)`,
+          primaryTransparent: `hsla(${h}, ${s}%, ${l}%, 0.5)`,
+          secondaryTransparent: `hsla(${h + 15}, ${s}%, ${l}%, 0.5)`,
+          primaryGlow: `hsla(${h}, ${s}%, ${l}%, 0.3)`,
+          secondaryGlow: `hsla(${h + 15}, ${s}%, ${l}%, 0.3)`,
+          bgGradient: `linear-gradient(45deg, 
+                    hsla(${h}, ${s}%, ${l}%, 0.1),
+                    hsla(${h + 30}, ${s}%, ${l}%, 0.1))`,
+        };
       }
 
-      fetch("resources.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const sectionsContainer =
-            document.getElementById("sectionsContainer");
+      async function loadResources() {
+        try {
+          const response = await fetch("/resources.json");
+          const data = await response.json();
+          renderPage(data);
+        } catch (error) {
+          console.error("Error loading resources:", error);
+        }
+      }
 
-          // Create sections
-          data.sections.forEach((section) => {
-            const sectionElement = document.createElement("div");
-            sectionElement.className = "section-row";
+      function renderPage(data) {
+        // Set page title
+        document.getElementById("pageTitle").textContent = data.title;
 
-            sectionElement.innerHTML = `
-                        <h2>${section.title}</h2>
-                        <div class="resources-slider"></div>
-                    `;
+        // Render categories
+        const categoriesContainer = document.getElementById("categories");
+        categoriesContainer.innerHTML = data.categories
+          .map((category) => {
+            const colors = generateColorVariants(category.color);
+            const style = `
+                    --primary: ${colors.primary};
+                    --secondary: ${colors.secondary};
+                    --tertiary: ${colors.tertiary};
+                    --primary-transparent: ${colors.primaryTransparent};
+                    --secondary-transparent: ${colors.secondaryTransparent};
+                    --primary-glow: ${colors.primaryGlow};
+                    --secondary-glow: ${colors.secondaryGlow};
+                    --bg-gradient: ${colors.bgGradient};
+                `;
 
-            const slider = sectionElement.querySelector(".resources-slider");
+            return `
+                    <div class="category" style="${style}">
+                        <h2 class="category-title">${category.name}</h2>
+                        <div class="grid">
+                            ${category.items
+                              .map(
+                                (item) => `
+                                <div class="card" 
+                                    onclick="window.location.href='${item.url}'"
+                                    >
+                                    <div class="card-title">${item.title}</div>
+                                    <div class="card-description">${item.description}</div>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+          })
+          .join("");
+      }
 
-            // Add resources to the section
-            section.resources.forEach((resource) => {
-              const card = createResourceCard(resource);
-              slider.appendChild(card);
-            });
-
-            sectionsContainer.appendChild(sectionElement);
-          });
-        });
+      // Initialize page
+      loadResources();
     </script>
   </body>
 </html>

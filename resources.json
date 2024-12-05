@@ -1,122 +1,62 @@
 {
-  "sections": [
+  "title": "Stream Central",
+  "categories": [
     {
-      "title": "Featured Resources",
-      "resources": [
+      "name": "Featured",
+      "color": "red",
+      "items": [
         {
-          "title": "Personal Bests",
-          "description": "Track all my gaming achievements and speedrun records",
-          "url": "https://zodidev.github.io/PBs/",
-          "category": "Gaming",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#0077be", "#000000"]
-            }
-          }
+          "title": "Bingo",
+          "description": "Interactive bingo board for stream events and challenges",
+          "url": "https://zodidev.github.io/Bingo/"
         },
         {
-          "title": "Stream Commands",
-          "description": "Complete list of chat commands and their usage",
-          "url": "https://zodidev.github.io/ZodCommands/",
-          "category": "Stream Tools",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#50C878", "#000000"]
-            }
-          }
+          "title": "Commands",
+          "description": "List of all available stream chat commands and their uses",
+          "url": "https://zodidev.github.io/ZodCommands/"
         },
         {
-          "title": "Stream Bingo",
-          "description": "Interactive bingo game for stream events",
-          "url": "https://zodidev.github.io/Bingo/",
-          "category": "Interactive",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#e96443", "#904e95"]
-            }
-          }
+          "title": "PBs",
+          "description": "Track my personal best times and speedrunning achievements",
+          "url": "https://zodidev.github.io/PBs/"
+        },
+        {
+          "title": "Merch",
+          "description": "Official Zodi merchandise and apparel store",
+          "url": "https://zodimerch.com"
         }
       ]
     },
     {
-      "title": "Socials",
-      "resources": [
+      "name": "Social Links",
+      "color": "purple",
+      "items": [
         {
-          "title": "YouTube",
-          "description": "Watch my latest videos",
-          "url": "https://youtube.com/@zodi02",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#FF0000", "#282828"]
-            }
-          }
+          "title": "Youtube",
+          "description": "Stream highlights, videos, and edited content",
+          "url": "https://www.youtube.com/channel/@zodi02"
         },
         {
           "title": "Twitch",
-          "description": "Watch me live!",
-          "url": "https://twitch.tv/ZodiSP",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#9146FF", "#282828"]
-            }
-          }
-        },
-        {
-          "title": "Twitter",
-          "description": "Follow for updates",
-          "url": "https://twitter.com/StreamZodi",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#1DA1F2", "#14171A"]
-            }
-          }
+          "description": "Live streams and real-time interaction",
+          "url": "https://twitch.tv/zodisp"
         },
         {
           "title": "Discord",
-          "description": "Join the community",
-          "url": "https://discord.com/invite/CUbVbzkc34/",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#7289DA", "#23272A"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "title": "Merch",
-      "resources": [
+          "description": "Join our community server for chat and updates",
+          "url": "My discord server! https://discord.gg/pYGX9PgBeP"
+        },
         {
-          "title": "Official Merch",
-          "description": "Get your favorite stream merch!",
-          "url": "https://ZodiMerch.com",
-          "background": {
-            "type": "gradient",
-            "gradient": {
-              "direction": "to right",
-              "colors": ["#FF3366", "#2b2b2b"]
-            }
-          }
+          "title": "Twitter",
+          "description": "Quick updates and announcements",
+          "url": "https://x.com/StreamZodi"
+        },
+        {
+          "title": "Bluesky",
+          "description": "Additional social updates and interactions",
+          "url": "https://bsky.app/profile/realzodi.bsky.social"
         }
       ]
     }
-  ],
-  "metadata": {
-    "lastUpdated": "2024-11-23",
-    "version": "1.0"
-  }
+  ]
 }
